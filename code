@@ -1,0 +1,67 @@
+import 'package:flutter/material.dart';
+
+class Screen1 extends StatelessWidget {
+  const Screen1({Key? key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.grey,
+      appBar: AppBar(
+        title: Text("Demo App"),
+      ),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: List.generate(
+          5,
+          (int index) {
+            return rowWidget(index + 1);
+          },
+        ),
+      ),
+    );
+  }
+
+  Row rowWidget(int rowNumber) {
+    bool showIcon = true;
+    Color iconColor = showIcon ? Colors.black : Colors.white;
+
+    if (rowNumber % 2 == 0) {
+      return Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          boxWidget(color: Colors.black, iconColor: Colors.white),
+          boxWidget(color: Colors.white, iconColor: Colors.black),
+          boxWidget(color: Colors.black, iconColor: Colors.white),
+          boxWidget(color: Colors.white, iconColor: Colors.black),
+          boxWidget(color: Colors.black, iconColor: Colors.white),
+        ],
+      );
+    } else {
+      return Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          boxWidget(color: Colors.white, iconColor: Colors.black),
+          boxWidget(color: Colors.black, iconColor: Colors.white),
+          boxWidget(color: Colors.white, iconColor: Colors.black),
+          boxWidget(color: Colors.black, iconColor: Colors.white),
+          boxWidget(color: Colors.white, iconColor: Colors.black),
+        ],
+      );
+    }
+  }
+
+  Widget boxWidget({required Color color, bool? showIcon, required Color iconColor}) {
+    return Container(
+      height: 25,
+      width: 25,
+      color: color,
+      child: showIcon ?? true
+          ? Icon(
+              Icons.adjust,
+              color: iconColor,
+            )
+          : null,
+    );
+  }
+}
